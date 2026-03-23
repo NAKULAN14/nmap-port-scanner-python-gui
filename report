@@ -1,0 +1,91 @@
+Port Scanning Report
+Target System: 10.67.5.160
+Scan Range: Ports 1–1024
+Scan Method: TCP Port Scan (Nmap-based)
+Date: 23/03/2026
+________________________________________
+🧾 1. Objective
+The purpose of this scan is to identify open ports on the target system and assess potential security risks associated with exposed services.
+________________________________________
+🔍 2. Scan Summary
+•	Total Ports Scanned: 1024 
+•	Open Ports Found: 14 
+•	Target IP: 10.67.5.160 
+________________________________________
+📌 3. Open Ports & Services
+Port	Service	Description	Risk Level
+25	SMTP	Email sending service	🔴 High
+110	POP3	Email retrieval (unencrypted)	🔴 High
+119	NNTP	Network news transfer	🟠 Medium
+135	RPC	Windows Remote Procedure Call	🔴 High
+139	NetBIOS	File/Printer sharing	🔴 High
+143	IMAP	Email retrieval	🟠 Medium
+445	SMB	File sharing (Windows)	🔴 High
+465	SMTPS	Secure email sending	🟡 Low
+563	NNTPS	Secure NNTP	🟡 Low
+587	SMTP	Email submission	🟠 Medium
+903	Unknown	Possibly custom service	⚠️ Unknown
+913	Unknown	Possibly custom service	⚠️ Unknown
+993	IMAPS	Secure IMAP	🟡 Low
+995	POP3S	Secure POP3	🟡 Low
+________________________________________
+⚠️ 4. Security Analysis
+🔴 High Risk Findings
+•	Port 135, 139, 445 (Windows Services)
+→ Common targets for attacks like: 
+o	SMB exploits (e.g., WannaCry) 
+o	Unauthorized file access 
+•	Port 25 (SMTP)
+→ Can be abused for spam or mail relay attacks 
+•	Port 110 (POP3 - Unencrypted)
+→ Credentials can be intercepted 
+________________________________________
+🟠 Medium Risk Findings
+•	Port 143 (IMAP)
+→ If not encrypted, sensitive email data may leak 
+•	Port 119 (NNTP)
+→ Rarely used, may indicate unnecessary service 
+•	Port 587 (SMTP Submission)
+→ Needs authentication enforcement 
+________________________________________
+⚠️ Unknown Ports
+•	Ports 903, 913
+→ Could indicate: 
+o	Custom applications 
+o	Misconfigured services 
+o	Potential backdoors (if suspicious) 
+________________________________________
+🟡 Low Risk (Secure Services)
+•	Ports: 465, 563, 993, 995
+✔ These use encryption (SSL/TLS), relatively safer 
+________________________________________
+🛡️ 5. Recommendations
+🔐 Immediate Actions
+•	Disable unused services (especially 119, 903, 913) 
+•	Close unnecessary ports via firewall 
+________________________________________
+🖥️ Windows Security Hardening
+•	Restrict access to: 
+o	Port 135, 139, 445 
+•	Enable: 
+o	Windows Firewall rules 
+o	Network-level authentication 
+________________________________________
+📧 Email Security
+•	Disable unencrypted protocols: 
+o	❌ POP3 (110) 
+o	❌ IMAP (143) 
+•	Use only: 
+o	✅ IMAPS (993) 
+o	✅ POP3S (995) 
+________________________________________
+🔎 Monitoring
+•	Use tools like: 
+o	Wireshark (traffic monitoring) 
+o	IDS/IPS systems 
+•	Regularly scan system for open ports 
+________________________________________
+📌 6. Conclusion
+The scan revealed multiple open ports, including several high-risk services commonly targeted in cyberattacks. Immediate action is recommended to secure exposed services, disable unnecessary ports, and enforce encryption protocols to reduce the attack surface.
+________________________________________
+
